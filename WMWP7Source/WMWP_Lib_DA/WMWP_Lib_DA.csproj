@@ -52,6 +52,8 @@
     <Compile Include="..\WMWP_Lib_Glob\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="APIKEY.cs" />
+    <Compile Include="Config.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WMWP_Lib_Glob\WMWP_Lib_Glob.csproj">
