@@ -6,3 +6,4 @@
 *.pdb
 obj/
 Bin/
+/localnotes.txt
