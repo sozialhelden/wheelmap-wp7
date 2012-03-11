@@ -6,14 +6,23 @@ Projectinformations
 -------------------
 Mailinglinst:   http://groups.google.com/group/wheelmap-wp7/
 		wheelmap-wp7@googlegroups.com
+
 github:		https://github.com/sozialhelden/wheelmap-wp7
+
+todo list:	https://github.com/sozialhelden/wheelmap-wp7/issues
 
 
 Project State:	started
 
 
 
-
+Development requirement:
+-------------------
+Visual Studio 2010
+Expression Blend 4
+Windows Phone Developer Tools 7.5
+Silverlight for WindowsPhone Toolkit November 2011
+Git Toolkit (any you like)
 
 
 
@@ -21,7 +30,6 @@ Developer
 -------------------
 Active:
  Daniel Bedarf
-
 
 
 
