@@ -20,7 +20,7 @@ Development requirement:
 -------------------
 Visual Studio 2010
 Expression Blend 4
-Windows Phone Developer Tools 7.5
+Windows Phone Developer Tools 7.5 (Windows Phone 7.1 SDK)
 Silverlight for WindowsPhone Toolkit November 2011
 Git Toolkit (any you like)
 
@@ -30,6 +30,11 @@ Developer
 -------------------
 Active:
  Daniel Bedarf
+
+FAQ
+-------------------
+F: How to publish open todo's?
+A: in soucecode use "TODO:" - comment, for thing not associated with sourcecode use github issues
 
 
 
