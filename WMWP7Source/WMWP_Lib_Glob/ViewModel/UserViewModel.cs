@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Sozialhelden.Wheelmap.Lib.Global.ViewModel
 {
-    public class UserViewModel : INotifyPropertyChanged
+    public class UserViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private string _Email;
         public string Email
@@ -52,7 +52,36 @@ namespace Sozialhelden.Wheelmap.Lib.Global.ViewModel
                 }
             }
         }
-        
+
+
+        #region Interfaces
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        //TODO
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case "Password":
+                        if (string.IsNullOrEmpty(Password))
+                            return "No Password";
+
+                        if (Password.Length < 3)
+                            return "Password must at least 3 Chars";
+                        break;
+                }
+                return "";
+            }
+        }
+
+        #endregion
     }
 }

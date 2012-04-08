@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sozialhelden.WP.Lib.DataAccess</RootNamespace>
+    <RootNamespace>Sozialhelden.Wheelmap.Lib.DataAccess</RootNamespace>
     <AssemblyName>Sozialhelden.WP.Lib.DA</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -54,6 +54,8 @@
     </Compile>
     <Compile Include="APIKEY.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="DataManager.cs" />
+    <Compile Include="Exceptions\APIKeyException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WMWP_Lib_Glob\WMWP_Lib_Glob.csproj">

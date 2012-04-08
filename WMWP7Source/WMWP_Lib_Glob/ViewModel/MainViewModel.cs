@@ -33,6 +33,8 @@ namespace Sozialhelden.Wheelmap.Lib.Global.ViewModel
             }
         }
 
+        public readonly ObservableCollection<CategoryViewModel> Categories = new ObservableCollection<CategoryViewModel>();
+
         #region Commands
 
         void actionCmd1()
