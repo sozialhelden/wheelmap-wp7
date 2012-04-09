@@ -4,6 +4,7 @@ using System.Windows;
 using Sozialhelden.Wheelmap.Lib.ViewModel;
 using System.Diagnostics;
 
+
 namespace Sozialhelden.Wheelmap.Lib.DataAccess
 {
     /// <summary>
@@ -19,7 +20,6 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
         /// </summary>
         private DataManager()
         {
-            _mainViewModel = new MainViewModel();
         }
 
         private static DataManager _instance;
@@ -36,35 +36,11 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
             }
         }
 
-        MainViewModel _mainViewModel;
-        /// <summary>
-        /// Gets the main view model.
-        /// </summary>
-        /// <value>The main view model.</value>
-        public MainViewModel MainViewModel
-        {
-            get
-            {
-                return _mainViewModel;
-            }
-        }
-
-        string _apikey;
         /// <summary>
         /// Gets or sets the API key to access server data
         /// </summary>
         /// <value>The API key.</value>
-        public string APIKey
-        {
-            private get
-            {
-                return _apikey;
-            }
-            set
-            {
-                _apikey = value;
-            }
-        }
+        public string APIKey { private get; set; }
 
         string _locale;
         /// <summary>
@@ -97,7 +73,7 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
         /// Gets the categories and put them to the viewmodel.
         /// </summary>
         /// <exception cref="APIKeyEception">if ther is no api - key</exception>
-        public void GetCategories()
+        public System.Collections.Generic.List<Object> GetCategories()
         {
             validateAPIKey();
             try
@@ -121,7 +97,17 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
                                 throw e.Error;
                             }
                             string json = e.Result;
-                            MessageBox.Show(json);
+
+                            //TODO P!: JsonArray users = (JsonArray)JsonArray.Load(new System.IO.MemoryStream(json.ToCharArray()));
+
+
+                            //foreach (JsonObject member in users)
+                            //{
+                            //    string name = member["Name"];
+                            //    int age = member["Age"];
+                            //}
+
+
                         }
                         catch (Exception ex)
                         {
@@ -140,7 +126,7 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 throw;
             }
-
+            return new System.Collections.Generic.List<object>();
         }
 
         #region Helper

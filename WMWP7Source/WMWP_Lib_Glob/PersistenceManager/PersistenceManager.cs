@@ -8,8 +8,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Sozialhelden.Wheelmap.Lib.Global;
 
-namespace Sozialhelden.Wheelmap.Lib.Global
+namespace Sozialhelden.Wheelmap.Lib.Storage
 {
     /// <summary>
     /// load and save cached data and settings from 
@@ -44,9 +45,16 @@ namespace Sozialhelden.Wheelmap.Lib.Global
         #endregion
 
         #region Load
+        internal Settings LoadSettings()
+        {
+            //TODO: implement
+            return new Settings();
+        }     
         #endregion
 
         #region Save
         #endregion
+
+
     }
 }

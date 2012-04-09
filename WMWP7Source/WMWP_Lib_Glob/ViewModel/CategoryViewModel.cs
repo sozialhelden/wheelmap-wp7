@@ -6,6 +6,12 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
     public class CategoryViewModel : INotifyPropertyChanged
     {
 
+        public CategoryViewModel(string id, string name)
+        {
+            Identifier = id;
+            LocalizedName = name;
+        }
+
         private string _ID;
 
         public string ID
