@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using System.Diagnostics;
 
-namespace Sozialhelden.Wheelmap.Lib.Global
+namespace Sozialhelden.Wheelmap.Lib.ViewModel
 {
     /// <summary>
     /// 

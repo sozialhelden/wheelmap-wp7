@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 
-namespace Sozialhelden.Wheelmap.Lib.Global.ViewModel
+namespace Sozialhelden.Wheelmap.Lib.ViewModel
 {
     public class CommandViewModel : INotifyPropertyChanged
     {

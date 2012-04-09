@@ -119,11 +119,9 @@ namespace Sozialhelden.WP.TestApp
         // Code, der bei nicht behandelten Ausnahmen ausgeführt wird
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                // Eine nicht behandelte Ausnahme ist aufgetreten. Unterbrechen und Debugger öffnen
-                System.Diagnostics.Debugger.Break();
-            }
+            e.Handled = true;
+            MessageBox.Show(e.ExceptionObject.Message, "sorry big problem", MessageBoxButton.OK);
+
         }
 
         #region Initialisierung der Phone-Anwendung

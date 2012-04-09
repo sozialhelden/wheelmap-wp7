@@ -104,10 +104,6 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WMWP_Lib_DA\WMWP_Lib_DA.csproj">
-      <Project>{14A622CA-6272-459E-AAD9-E28D923B958D}</Project>
-      <Name>WMWP_Lib_DA</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WMWP_Lib_Glob\WMWP_Lib_Glob.csproj">
       <Project>{2DEDAB56-B4C9-487E-84B4-8016DBAE5DC2}</Project>
       <Name>WMWP_Lib_Glob</Name>
