@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using SharpGIS.ZLib;
+using System.Diagnostics;
 
 namespace SharpGIS
 {
@@ -18,8 +19,8 @@ namespace SharpGIS
 		private Socket _socket = null;
 		private SocketAsyncEventArgs args;
 		private static ManualResetEvent _clientDone = new ManualResetEvent(false);
-		private const int TIMEOUT_MILLISECONDS = 5000;
-		private const int MAX_BUFFER_SIZE = 2048;
+		private const int TIMEOUT_MILLISECONDS = 10000;
+		private const int MAX_BUFFER_SIZE = 2048;//2048
 		private bool isBusy = false;
 		
 		public GzipHttpWebRequest(Uri address)
@@ -232,6 +233,9 @@ namespace SharpGIS
 					return;
 				}
 				string stringVal = System.Text.Encoding.UTF8.GetString(e.Buffer, e.Offset, e.BytesTransferred);
+                _danielResult += stringVal;
+                Debug.WriteLine("Buffer Length: {0}\tTransferred Length: {1}", e.Buffer.Length, e.BytesTransferred);
+
 				// Retrieve the data from the buffer
 				if (ResponseHeaders == null)
 				{
@@ -275,19 +279,22 @@ namespace SharpGIS
 						var start = response.IndexOf("\r\n\r\n") + 4;
 						length = Math.Max(e.Buffer.Length - start, length);
 						byte[] bodyStart = new byte[length];
+                        Debug.WriteLine("Find Length of Buffer for Body: {0} Bytes", bodyStart.Length);
 						for (int i = 0; i < bodyStart.Length; i++)
 						{
 							bodyStart[i] = e.Buffer[i + start];
 						}
-						WriteResponseBody(bodyStart);
+						WriteResponseBody(bodyStart, bodyStart.Length);
 					}
 				}
 				else if (body != null)
 				{
-					WriteResponseBody(e.Buffer);
+					WriteResponseBody(e.Buffer, e.BytesTransferred);
 				}
-				if (isBusy)
-					_socket.ReceiveAsync(args);
+                if (isBusy)
+                {
+                    _socket.ReceiveAsync(args);
+                }
 			}
 			else
 			{
@@ -295,19 +302,29 @@ namespace SharpGIS
 			}
 		}
 
-		private void WriteResponseBody(byte[] buffer)
+        /// <summary>
+        /// Write Data to the Body
+        /// </summary>
+        /// <param name="buffer">the buffer</param>
+        /// <param name="bufferlength">bytes which are transferred in the buffer (can be less than buffer.length)</param>
+		private void WriteResponseBody(byte[] buffer, int bufferlength)
 		{
+            if (buffer.Length < bufferlength) throw new ArgumentOutOfRangeException("Bufferlength > Buffer.Length in WriteResponseBody");
 			int contentlength = int.MaxValue;
 			if (ResponseHeaders[HttpRequestHeader.ContentLength] != null)
 				contentlength = int.Parse(ResponseHeaders[HttpRequestHeader.ContentLength]);
-			int length = buffer.Length;
-			if (contentlength < body.Length + length)
-			{
-				body.Write(buffer, 0, contentlength - (int)body.Length);
-				EndRequestSuccess();
-			}
-			else
-				body.Write(buffer, 0, length);
+            int length = bufferlength;
+            if (contentlength < body.Length + length)
+            {
+                Debug.WriteLine("Write Body from Buffer : {0} Bytes", contentlength - (int)body.Length);
+                body.Write(buffer, 0, contentlength - (int)body.Length);
+                EndRequestSuccess();
+            }
+            else
+            {
+                Debug.WriteLine("Write Body from Buffer : {0} Bytes", bufferlength);
+                body.Write(buffer, 0, bufferlength);
+            }
 		}
 
 		private void EndRequestError(Exception ex)
@@ -320,11 +337,18 @@ namespace SharpGIS
 			_clientDone.Set();
 		}
 
+        string _danielResult = "";
 		private void EndRequestSuccess()
 		{
 			_clientDone.Set();
 			_socket.Close();
 			isBusy = false;
+            //HACK: for test the STream
+            //body.Seek(0, SeekOrigin.Begin);
+            //StreamReader sr = new StreamReader(body);
+            //string rs = sr.ReadToEnd();
+            //rs = _danielResult.Substring(_danielResult.IndexOf("\r\n\r\n"));
+
 			body.Seek(0, SeekOrigin.Begin);
 			Stream result = body;
 			if (ResponseHeaders[HttpRequestHeader.ContentEncoding] != null)
