@@ -87,11 +87,7 @@ namespace Sozialhelden.WP.TestApp
         // Dieser Code wird beim ersten Starten der Anwendung nicht ausgeführt
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            // Sicherstellen, dass der Anwendungszustand ordnungsgemäß wiederhergestellt wird
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                App.ViewModel.LoadData();
-            }
+
         }
 
         // Code, der ausgeführt werden soll, wenn die Anwendung deaktiviert wird (in den Hintergrund gebracht wird)

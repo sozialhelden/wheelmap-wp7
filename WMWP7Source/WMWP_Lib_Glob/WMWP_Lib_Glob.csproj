@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sozialhelden.Wheelmap.Lib.Global</RootNamespace>
+    <RootNamespace>Sozialhelden.Wheelmap.Lib</RootNamespace>
     <AssemblyName>Sozialhelden.Wheelmap.WP.Lib.Global</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -44,23 +44,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="SharpGIS.GZipWebClient">
-      <HintPath>..\ExternalLibs\SharpGIS.GZipWebClient.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.3\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SharpZipLib.Silverlight4">
-      <HintPath>..\ExternalLibs\SharpZipLib.Silverlight4.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\Config.cs" />
     <Compile Include="DataAccess\DataManager.cs" />
     <Compile Include="DataAccess\Exceptions\APIKeyException.cs" />
+    <Compile Include="DataAccess\Model\Category.cs" />
     <Compile Include="Helper\OSMTileSource.cs" />
     <Compile Include="Helper\VirtualCommand.cs" />
     <Compile Include="PersistenceManager\PersistenceManager.cs" />
@@ -72,6 +74,15 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WP7_Lib_GZip\WP7_Lib_GZip.csproj">
+      <Project>{9CD80B89-56AF-44EC-838F-70C32210F098}</Project>
+      <Name>WP7_Lib_GZip</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

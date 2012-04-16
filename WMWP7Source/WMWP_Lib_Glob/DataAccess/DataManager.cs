@@ -3,7 +3,15 @@ using System.Net;
 using System.Windows;
 using Sozialhelden.Wheelmap.Lib.ViewModel;
 using System.Diagnostics;
-
+using System.Linq;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
+using System.Xml.Linq;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Text;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Sozialhelden.Wheelmap.Lib.DataAccess
 {
@@ -20,6 +28,8 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
         /// </summary>
         private DataManager()
         {
+            //WebRequest.RegisterPrefix("http://", SharpGIS.WebRequestCreator.GZip);
+            //WebRequest.RegisterPrefix("https://", SharpGIS.WebRequestCreator.GZip);
         }
 
         private static DataManager _instance;
@@ -56,7 +66,7 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
                 {
                     if (string.IsNullOrEmpty(_locale)) _locale = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     _locale = "en";
                 }
@@ -73,18 +83,20 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
         /// Gets the categories and put them to the viewmodel.
         /// </summary>
         /// <exception cref="APIKeyEception">if ther is no api - key</exception>
-        public System.Collections.Generic.List<Object> GetCategories()
+        public void GetCategoriesAsync(Action<List<Model.Category>> callback)
         {
             validateAPIKey();
             try
             {
-
                 string url = Config.UCategories + getQueryString(paramAPIKey(), paramLocale());
 
                 SharpGIS.GZipWebClient wc = new SharpGIS.GZipWebClient();
+                //wc.OpenReadCompleted +=
+                //    delegate(object sender, System.Net.OpenReadCompletedEventArgs e)
                 wc.DownloadStringCompleted +=
-                    delegate(object sender, System.Net.DownloadStringCompletedEventArgs e)
+                delegate(object sender, System.Net.DownloadStringCompletedEventArgs e)
                     {
+                        List<Model.Category> retVal = new List<Model.Category>();
                         try
                         {
                             if (e.Error != null)
@@ -96,29 +108,34 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
                                 }
                                 throw e.Error;
                             }
-                            string json = e.Result;
 
-                            //TODO P!: JsonArray users = (JsonArray)JsonArray.Load(new System.IO.MemoryStream(json.ToCharArray()));
+                            string jsonstr = e.Result;
 
+                            JObject json = (JObject)JsonConvert.DeserializeObject(jsonstr);
+                            foreach (var cat in json["categories"])
+                            {
+                                Debug.WriteLine("categorie {0} ({1}, \"{2}\"",
+                                    cat["id"], cat["identifier"], cat["localized_name"]);
 
-                            //foreach (JsonObject member in users)
-                            //{
-                            //    string name = member["Name"];
-                            //    int age = member["Age"];
-                            //}
-
+                                retVal.Add(new Model.Category() { 
+                                    id = cat["id"].Value<string>(), 
+                                    identifier = cat["identifier"].ToString(),
+                                    localized_name = cat["localized_name"].ToString() 
+                                });
+                            }
 
                         }
                         catch (Exception ex)
                         {
-
                             Debug.WriteLine(ex.ToString());
                             throw new Exception("load categories failed: " + ex.Message, ex);
                         }
+                        if (callback != null) callback(retVal);
                     };
 
                 Debug.WriteLine(url);
                 wc.DownloadStringAsync(new Uri(url, UriKind.Absolute));
+                //wc.OpenReadAsync(new Uri(url, UriKind.Absolute));
 
             }
             catch (Exception ex)
@@ -126,13 +143,12 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 throw;
             }
-            return new System.Collections.Generic.List<object>();
         }
 
         #region Helper
         string getQueryString(params string[] querys)
         {
-            string querystring = "?";
+            string querystring = "?";// "?format=xml&";
             foreach (string s in querys)
             {
                 querystring += s + "&";

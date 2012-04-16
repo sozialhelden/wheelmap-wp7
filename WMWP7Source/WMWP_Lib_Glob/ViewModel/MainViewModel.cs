@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System;
 using Sozialhelden.Wheelmap.Lib.Global;
+using System.Windows.Threading;
 
 namespace Sozialhelden.Wheelmap.Lib.ViewModel
 {
@@ -20,7 +21,7 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             Categories = new ObservableCollection<CategoryViewModel>();
 
             _settings = _store.LoadSettings();
-          
+
             _data.APIKey = _settings.APIKey;
             if (string.IsNullOrEmpty(_settings.Locale) == false) _data.Locale = _settings.Locale;
         }
@@ -52,7 +53,7 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             }
         }
 
-        public ObservableCollection<CategoryViewModel> Categories { get; private set;}
+        public ObservableCollection<CategoryViewModel> Categories { get; private set; }
 
         #region Commands
 
@@ -61,11 +62,18 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             try
             {
                 Categories.Add(new CategoryViewModel("test", "te"));
-                return;
-                foreach (var cat in _data.GetCategories())
-                {
-                    Categories.Add(new CategoryViewModel("test","te"));
-                }
+                // return;
+                _data.GetCategoriesAsync(
+                    (List<DataAccess.Model.Category> data) =>
+                    {
+                        Application.Current.RootVisual.Dispatcher.BeginInvoke(() =>
+                            {
+                                foreach (var cat in data)
+                                {
+                                    Categories.Add(new CategoryViewModel(cat.identifier, cat.localized_name));
+                                }
+                            });
+                    });
             }
             catch (System.Exception ex)
             {
@@ -103,13 +111,13 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
 
             cmds.Add(new CommandViewModel
                         (
-                        "Test 1", 
+                        "Test 1",
                         new VirtualCommand(param => this.actionCmd1())
                         ));
 
             cmds.Add(new CommandViewModel
                         (
-                        "Test 2", 
+                        "Test 2",
                         new VirtualCommand(param => this.actionCmd2())
                         ));
 
