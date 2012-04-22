@@ -41,12 +41,18 @@
             <!--Pivotelement zwei-->
             <controls:PivotItem Header="Karte">
                 <Grid>
-                    <Microsoft_Phone_Controls_Maps:Map x:Name="map" Center="{Binding CurrentPosition}" CopyrightVisibility="Collapsed" ScaleVisibility="Visible" ZoomBarVisibility="Visible" ZoomLevel="6">
-                    </Microsoft_Phone_Controls_Maps:Map>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height= "auto"  />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding CurrentPositionWatcherState}" Foreground="Green" />
+                    <Microsoft_Phone_Controls_Maps:Map x:Name="map" Grid.Row="1" Center="{Binding CurrentPosition}" CopyrightVisibility="Collapsed" ScaleVisibility="Visible" ZoomBarVisibility="Visible" ZoomLevel="18" />
                 </Grid>
+
+
             </controls:PivotItem>
         </controls:Pivot>
-        <TextBlock Grid.Row="1" Margin="5,0" Text="{Binding Error}" />
+        <TextBlock Grid.Row="1" Margin="5,0" Text="{Binding Error}"  Foreground="Red" />
 
     </Grid>
 

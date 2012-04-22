@@ -37,7 +37,7 @@ namespace Sozialhelden.WP.TestApp
 
         void ViewModel_CurrentPositionChanged(System.Device.Location.GeoCoordinate gc)
         {
-            map.SetView(gc, 14); //18
+            map.SetView(gc, 18); 
         }
     }
 }

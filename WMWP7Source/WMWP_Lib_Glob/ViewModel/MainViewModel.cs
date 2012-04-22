@@ -28,7 +28,6 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             if (string.IsNullOrEmpty(_data.APIKey)) _data.APIKey = _settings.APIKey;
             if (string.IsNullOrEmpty(_settings.Locale) == false) _data.Locale = _settings.Locale;
 
-            actionFindCurrentPosition();
         }
 
 
@@ -39,24 +38,6 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             actionLoadCategories();
         }
 
-
-        ReadOnlyCollection<CommandViewModel> _commands;
-
-        /// <summary>
-        /// LIst of Commands to render in an automatic menue
-        /// </summary>
-        public ReadOnlyCollection<CommandViewModel> Commands
-        {
-            get
-            {
-                if (_commands == null)
-                {
-                    List<CommandViewModel> cmds = this.InitCommands();
-                    _commands = new ReadOnlyCollection<CommandViewModel>(cmds);
-                }
-                return _commands;
-            }
-        }
 
         #region Categories
         public ObservableCollection<CategoryViewModel> Categories { get; private set; }
@@ -175,67 +156,107 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             if (_currentPositionWatcher == null)
             {
                 _currentPositionWatcher = new System.Device.Location.GeoCoordinateWatcher(System.Device.Location.GeoPositionAccuracy.High);
-
-                _currentPositionWatcher.StatusChanged += new EventHandler<System.Device.Location.GeoPositionStatusChangedEventArgs>(_currentPositionWatcher_StatusChanged);
-                _currentPositionWatcher.PositionChanged += new EventHandler<System.Device.Location.GeoPositionChangedEventArgs<System.Device.Location.GeoCoordinate>>(_currentPositionWatcher_PositionChanged);
+                _currentPositionWatcher.StatusChanged += new EventHandler<System.Device.Location.GeoPositionStatusChangedEventArgs>(callbackCurrentPositionWatcher_StatusChanged);
             }
             if (_currentPositionRefreshTimer == null) ;
             {
                 _currentPositionRefreshTimer = new DispatcherTimer();
-                _currentPositionRefreshTimer.Tick += new EventHandler(_currentPositionRefreshTimer_Tick);
-                _currentPositionRefreshTimer.Interval = new TimeSpan(0, 0, 60);
+                _currentPositionRefreshTimer.Tick += new EventHandler(callbackCurrentPositionRefreshTimer_Tick);
+                _currentPositionRefreshTimer.Interval = new TimeSpan(0, 0, 60); //default interval for refresh data
             }
             _currentPositionWatcher.Start();
         }
 
-        void _currentPositionRefreshTimer_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Tick event of the CurrentPositionRefreshTimer 
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        void callbackCurrentPositionRefreshTimer_Tick(object sender, EventArgs e)
         {
             _currentPositionRefreshTimer.Stop();
             _currentPositionWatcher.Start();
         }
 
-        void _currentPositionWatcher_PositionChanged(object sender, System.Device.Location.GeoPositionChangedEventArgs<System.Device.Location.GeoCoordinate> e)
-        {
-            Debug.WriteLine("new position. {0}", e.Position.Location.ToString());
-            Application.Current.RootVisual.Dispatcher.BeginInvoke(() =>
-            {
-                CurrentPosition = e.Position.Location;
-            });
-            _currentPositionWatcher.Stop();
-            _currentPositionRefreshTimer.Start();
-        }
 
-        void _currentPositionWatcher_StatusChanged(object sender, System.Device.Location.GeoPositionStatusChangedEventArgs e)
+        /// <summary>
+        /// Handles the StatusChanged event of the CurrentPositionWatcher 
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Device.Location.GeoPositionStatusChangedEventArgs"/> instance containing the event data.</param>
+        void callbackCurrentPositionWatcher_StatusChanged(object sender, System.Device.Location.GeoPositionStatusChangedEventArgs e)
         {
             Debug.WriteLine("PositionWatcher_StatusChanged: {0}", e.Status);
             Application.Current.RootVisual.Dispatcher.BeginInvoke(() =>
             {
+                CurrentPositionWatcherState = e.Status;
                 if (e.Status == System.Device.Location.GeoPositionStatus.NoData)
                 {
-                    //TODO Glob
+                    //TODO Globalization
                     Error = "Ortungsdienst verfügbar aber keine Daten";
                     MessageBox.Show(Error);
 
                 }
                 else if (e.Status == System.Device.Location.GeoPositionStatus.Disabled)
                 {
-                    //TODO Glob
+                    //TODO Globalization
                     Error = "kein  Ortingsdienst";
                     MessageBox.Show(Error);
                 }
-                Error = e.Status.ToString();
-            });
+                else if (e.Status == System.Device.Location.GeoPositionStatus.Ready)
+                {
+                    CurrentPosition = _currentPositionWatcher.Position.Location;
+                    _currentPositionWatcher.Stop();
+                    _currentPositionRefreshTimer.Start();
+                }
+            });//invoke ui thread
 
         }
 
-
-        private void actionFindCurrentPosition()
+        private System.Device.Location.GeoPositionStatus _CurrentPositionWatcherState;
+        /// <summary>
+        /// Gets or sets the state of the current position finder.
+        /// </summary>
+        /// <value>The state of the current position finder.</value>
+        public System.Device.Location.GeoPositionStatus CurrentPositionWatcherState
         {
-
+            get { return _CurrentPositionWatcherState; }
+            set
+            {
+                if (value != _CurrentPositionWatcherState)
+                {
+                    _CurrentPositionWatcherState = value;
+                    if (PropertyChanged != null)
+                    {
+                        try { PropertyChanged(this, new PropertyChangedEventArgs("CurrentPositionWatcherState")); }
+                        catch (Exception ex) { System.Diagnostics.Debug.WriteLine("Eventfehler\n" + ex.StackTrace); }
+                    }
+                }
+            }
         }
+        
+
         #endregion
 
         #region Commands
+
+        ReadOnlyCollection<CommandViewModel> _commands;
+
+        /// <summary>
+        /// LIst of Commands to render in an automatic menue
+        /// </summary>
+        public ReadOnlyCollection<CommandViewModel> Commands
+        {
+            get
+            {
+                if (_commands == null)
+                {
+                    List<CommandViewModel> cmds = this.InitCommands();
+                    _commands = new ReadOnlyCollection<CommandViewModel>(cmds);
+                }
+                return _commands;
+            }
+        }
 
         void actionCmd1()
         {
@@ -247,27 +268,7 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             MessageBox.Show("Test 2");
         }
 
-        #endregion
 
-        private string _Error;
-        public string Error
-        {
-            get { return _Error; }
-            set
-            {
-                if (value != _Error)
-                {
-                    _Error = value;
-                    if (PropertyChanged != null)
-                    {
-                        try { PropertyChanged(this, new PropertyChangedEventArgs("Error")); }
-                        catch (Exception ex) { System.Diagnostics.Debug.WriteLine("Eventfehler\n" + ex.StackTrace); }
-                    }
-                }
-            }
-        }
-
-        #region Helper
         /// <summary>
         /// Inits the commands.
         /// </summary>
@@ -300,6 +301,27 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
         #endregion
 
 
+        #region ErrorHandling
+
+        private string _Error;
+        public string Error
+        {
+            get { return _Error; }
+            set
+            {
+                if (value != _Error)
+                {
+                    _Error = value;
+                    if (PropertyChanged != null)
+                    {
+                        try { PropertyChanged(this, new PropertyChangedEventArgs("Error")); }
+                        catch (Exception ex) { System.Diagnostics.Debug.WriteLine("Eventfehler\n" + ex.StackTrace); }
+                    }
+                }
+            }
+        }
+
+
         protected void HandleError(Exception ex)
         {
             System.Diagnostics.Debug.WriteLine(ex.ToString());
@@ -307,7 +329,7 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             MessageBox.Show(ex.ToString());
 #endif
         }
-
+        #endregion
 
 
         #region INotifyPropertyChanged Member
