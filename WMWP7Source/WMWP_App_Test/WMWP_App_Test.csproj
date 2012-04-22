@@ -54,6 +54,7 @@
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="Microsoft.Phone.Controls.Maps" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Servicemodel" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />

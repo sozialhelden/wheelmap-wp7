@@ -17,6 +17,10 @@
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
         <!--Pivotsteuerelement-->
         <controls:Pivot Title="WMWP7 Debug &amp; Test">
             <!--Pivotelement eins-->
@@ -37,11 +41,13 @@
             <!--Pivotelement zwei-->
             <controls:PivotItem Header="Karte">
                 <Grid>
-                    <Microsoft_Phone_Controls_Maps:Map >
+                    <Microsoft_Phone_Controls_Maps:Map x:Name="map" Center="{Binding CurrentPosition}" CopyrightVisibility="Collapsed" ScaleVisibility="Visible" ZoomBarVisibility="Visible" ZoomLevel="6">
                     </Microsoft_Phone_Controls_Maps:Map>
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>
+        <TextBlock Grid.Row="1" Margin="5,0" Text="{Binding Error}" />
+
     </Grid>
 
     <!--Beispielcode für die Verwendung von ApplicationBar-->

@@ -28,16 +28,11 @@ namespace Sozialhelden.WP.TestApp
         // Daten für die ViewModel-Elemente laden
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            Wheelmap.Lib.DataAccess.DataManager.Instance.APIKey = "vSJpiypPUEfbKxSBSCW7";
             if (!App.ViewModel.IsDataLoaded)
             {
                 App.ViewModel.LoadData();
-                App.ViewModel.CurrentPositionChanged += new Wheelmap.Lib.ViewModel.CurrentPositionChangedDelegate(ViewModel_CurrentPositionChanged);
             }
-        }
-
-        void ViewModel_CurrentPositionChanged(System.Device.Location.GeoCoordinate gc)
-        {
-            map.SetView(gc, 14); //18
         }
     }
 }
