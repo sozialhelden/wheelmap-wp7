@@ -3,21 +3,25 @@ using System.ComponentModel;
 
 namespace Sozialhelden.Wheelmap.Lib.ViewModel
 {
+
+    /// <summary>
+    /// Present a Category
+    /// </summary>
     public class CategoryViewModel : INotifyPropertyChanged
     {
 
-        public CategoryViewModel(string id, string name)
+        public CategoryViewModel(string id, string identifier, string name)
         {
-            Identifier = id;
+            ID = id;
+            Identifier = identifier;
             LocalizedName = name;
         }
 
         private string _ID;
-
         public string ID
         {
             get { return _ID; }
-            set
+            internal set
             {
                 if (value != _ID)
                 {
@@ -38,11 +42,10 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
         }
 
         private string _LocalizedName;
-
         public string LocalizedName
         {
             get { return _LocalizedName; }
-            set
+            internal set
             {
                 if (value != _LocalizedName)
                 {
@@ -63,11 +66,10 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
         }
 
         private string _Identifier;
-
         public string Identifier
         {
             get { return _Identifier; }
-            set
+            internal set
             {
                 if (value != _Identifier)
                 {

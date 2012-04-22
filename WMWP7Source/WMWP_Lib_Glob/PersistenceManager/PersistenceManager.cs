@@ -17,7 +17,7 @@ namespace Sozialhelden.Wheelmap.Lib.Storage
     /// </summary>
     public sealed class PersistenceManager
     {
-        
+
         #region Singelton
 
         /// <summary>
@@ -47,9 +47,12 @@ namespace Sozialhelden.Wheelmap.Lib.Storage
         #region Load
         internal Settings LoadSettings()
         {
-            //TODO: implement
-            return new Settings();
-        }     
+            //TODO: implement, raed from isolated storage
+            Settings s = new Settings();
+            if(string.IsNullOrEmpty(s.APIKey)) s.APIKey= Wheelmap.Lib.DataAccess.DataManager.Instance.APIKey;
+
+            return s;
+        }
         #endregion
 
         #region Save

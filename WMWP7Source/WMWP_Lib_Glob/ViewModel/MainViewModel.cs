@@ -22,7 +22,7 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
 
             _settings = _store.LoadSettings();
 
-            _data.APIKey = _settings.APIKey;
+           if (string.IsNullOrEmpty(_data.APIKey)) _data.APIKey = _settings.APIKey;
             if (string.IsNullOrEmpty(_settings.Locale) == false) _data.Locale = _settings.Locale;
         }
 
@@ -53,26 +53,51 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             }
         }
 
+        #region Categories
         public ObservableCollection<CategoryViewModel> Categories { get; private set; }
 
-        #region Commands
+        /// <summary>
+        /// Find a Category ind the Categories Collection. Id it does not exist we create a new object
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <returns></returns>
+        public CategoryViewModel GetCategorie(string identifier)
+        {
+            identifier = identifier.ToLower().Trim();
+            foreach (CategoryViewModel cat in Categories)
+            {
+                if (cat.Identifier == identifier)
+                {
+                    return cat;
+                }
+            }
+            //if we are here the categorie was not found
+            CategoryViewModel newcat = new CategoryViewModel(identifier, identifier, identifier);
+            Categories.Add(newcat);
+            return newcat;
+        }
 
+        /// <summary>
+        /// load alle categories from Server and fill into Categories Collection
+        /// the collection will be updated and not cleared
+        /// </summary>
         public void actionLoadCategories()
         {
             try
             {
-                Categories.Add(new CategoryViewModel("test", "te"));
-                // return;
                 _data.GetCategoriesAsync(
                     (List<DataAccess.Model.Category> data) =>
                     {
                         Application.Current.RootVisual.Dispatcher.BeginInvoke(() =>
+                        {
+                            foreach (var cat in data)
                             {
-                                foreach (var cat in data)
-                                {
-                                    Categories.Add(new CategoryViewModel(cat.identifier, cat.localized_name));
-                                }
-                            });
+                                CategoryViewModel cvm = GetCategorie(cat.identifier);
+                                cvm.ID = cat.id;
+                                cvm.Identifier = cat.identifier;
+                                cvm.LocalizedName = cat.localized_name;
+                            }
+                        });
                     });
             }
             catch (System.Exception ex)
@@ -80,6 +105,11 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
                 HandleError(ex);
             }
         }
+        #endregion
+
+        #region Commands
+
+
 
         void actionCmd1()
         {
@@ -105,8 +135,8 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             //Eigentlich keine Aktion oder??
             cmds.Add(new CommandViewModel
             (
-            "Load Categories", //TODO Language
-            new VirtualCommand(param => this.actionCmd1())
+                "Load Categories", //TODO Language
+                new VirtualCommand(param => this.actionLoadCategories())
             ));
 
             cmds.Add(new CommandViewModel

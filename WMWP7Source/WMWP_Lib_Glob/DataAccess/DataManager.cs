@@ -50,7 +50,9 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
         /// Gets or sets the API key to access server data
         /// </summary>
         /// <value>The API key.</value>
-        public string APIKey { private get; set; }
+        public string APIKey { internal get; set; }
+
+        #endregion
 
         string _locale;
         /// <summary>
@@ -77,12 +79,11 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
                 _locale = value;
             }
         }
-        #endregion
 
         /// <summary>
-        /// Gets the categories and put them to the viewmodel.
+        /// Gets the categories and put them to a CategoryList.
         /// </summary>
-        /// <exception cref="APIKeyEception">if ther is no api - key</exception>
+        /// <exception cref="APIKeyEception">if there is no api - key</exception>
         public void GetCategoriesAsync(Action<List<Model.Category>> callback)
         {
             validateAPIKey();
@@ -91,8 +92,6 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
                 string url = Config.UCategories + getQueryString(paramAPIKey(), paramLocale());
 
                 SharpGIS.GZipWebClient wc = new SharpGIS.GZipWebClient();
-                //wc.OpenReadCompleted +=
-                //    delegate(object sender, System.Net.OpenReadCompletedEventArgs e)
                 wc.DownloadStringCompleted +=
                 delegate(object sender, System.Net.DownloadStringCompletedEventArgs e)
                     {
@@ -114,9 +113,10 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
                             JObject json = (JObject)JsonConvert.DeserializeObject(jsonstr);
                             foreach (var cat in json["categories"])
                             {
+#if DEBUG
                                 Debug.WriteLine("categorie {0} ({1}, \"{2}\"",
                                     cat["id"], cat["identifier"], cat["localized_name"]);
-
+#endif
                                 retVal.Add(new Model.Category() { 
                                     id = cat["id"].Value<string>(), 
                                     identifier = cat["identifier"].ToString(),
@@ -135,8 +135,6 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
 
                 Debug.WriteLine(url);
                 wc.DownloadStringAsync(new Uri(url, UriKind.Absolute));
-                //wc.OpenReadAsync(new Uri(url, UriKind.Absolute));
-
             }
             catch (Exception ex)
             {
@@ -146,9 +144,14 @@ namespace Sozialhelden.Wheelmap.Lib.DataAccess
         }
 
         #region Helper
+        /// <summary>
+        /// Build a  QueryString with usage of the passed single querys and some default querys
+        /// </summary>
+        /// <param name="querys">The querys.</param>
+        /// <returns></returns>
         string getQueryString(params string[] querys)
         {
-            string querystring = "?";// "?format=xml&";
+            string querystring = "?client=wp7&";// "?format=xml&";
             foreach (string s in querys)
             {
                 querystring += s + "&";
