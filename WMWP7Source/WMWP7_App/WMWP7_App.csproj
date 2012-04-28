@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9355DA79-5A30-4B59-8C7E-BA316600C146}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sozialhelden.Wheelmap.Phone.App</RootNamespace>
+    <AssemblyName>WheelmapPhone</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>WheelmapPhone.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>Sozialhelden.Wheelmap.Phone.App.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Icons\Readme.md" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Assets\Icons\marker\limited.png" />
+    <Resource Include="Assets\Icons\marker\limited\airport.png" />
+    <Resource Include="Assets\Icons\marker\limited\airport_terminal.png" />
+    <Resource Include="Assets\Icons\marker\limited\artgallery.png" />
+    <Resource Include="Assets\Icons\marker\limited\atm.png" />
+    <Resource Include="Assets\Icons\marker\limited\bank.png" />
+    <Resource Include="Assets\Icons\marker\limited\bar.png" />
+    <Resource Include="Assets\Icons\marker\limited\barber.png" />
+    <Resource Include="Assets\Icons\marker\limited\bar_coktail.png" />
+    <Resource Include="Assets\Icons\marker\limited\battlefield.png" />
+    <Resource Include="Assets\Icons\marker\limited\beach.png" />
+    <Resource Include="Assets\Icons\marker\limited\beautifulview.png" />
+    <Resource Include="Assets\Icons\marker\limited\bigcity.png" />
+    <Resource Include="Assets\Icons\marker\limited\boat.png" />
+    <Resource Include="Assets\Icons\marker\limited\bread.png" />
+    <Resource Include="Assets\Icons\marker\limited\busstop.png" />
+    <Resource Include="Assets\Icons\marker\limited\carrental.png" />
+    <Resource Include="Assets\Icons\marker\limited\cinema.png" />
+    <Resource Include="Assets\Icons\marker\limited\clothers_male.png" />
+    <Resource Include="Assets\Icons\marker\limited\coffee.png" />
+    <Resource Include="Assets\Icons\marker\limited\computers.png" />
+    <Resource Include="Assets\Icons\marker\limited\conveniencestore.png" />
+    <Resource Include="Assets\Icons\marker\limited\court.png" />
+    <Resource Include="Assets\Icons\marker\limited\currencyexchange.png" />
+    <Resource Include="Assets\Icons\marker\limited\cycling.png" />
+    <Resource Include="Assets\Icons\marker\limited\dancinghall.png" />
+    <Resource Include="Assets\Icons\marker\limited\daycare.png" />
+    <Resource Include="Assets\Icons\marker\limited\dentist.png" />
+    <Resource Include="Assets\Icons\marker\limited\departmentstore.png" />
+    <Resource Include="Assets\Icons\marker\limited\drinkingwater.png" />
+    <Resource Include="Assets\Icons\marker\limited\drugstore.png" />
+    <Resource Include="Assets\Icons\marker\limited\fastfood.png" />
+    <Resource Include="Assets\Icons\marker\limited\ferry.png" />
+    <Resource Include="Assets\Icons\marker\limited\fillingstation.png" />
+    <Resource Include="Assets\Icons\marker\limited\firstaid.png" />
+    <Resource Include="Assets\Icons\marker\limited\fitness.png" />
+    <Resource Include="Assets\Icons\marker\limited\flowers.png" />
+    <Resource Include="Assets\Icons\marker\limited\homecenter.png" />
+    <Resource Include="Assets\Icons\marker\limited\hospital.png" />
+    <Resource Include="Assets\Icons\marker\limited\information.png" />
+    <Resource Include="Assets\Icons\marker\limited\kiosk.png" />
+    <Resource Include="Assets\Icons\marker\limited\laundromat.png" />
+    <Resource Include="Assets\Icons\marker\limited\library.png" />
+    <Resource Include="Assets\Icons\marker\limited\liquor.png" />
+    <Resource Include="Assets\Icons\marker\limited\mall.png" />
+    <Resource Include="Assets\Icons\marker\limited\medicine.png" />
+    <Resource Include="Assets\Icons\marker\limited\memorial.png" />
+    <Resource Include="Assets\Icons\marker\limited\motel.png" />
+    <Resource Include="Assets\Icons\marker\limited\museum_archeological.png" />
+    <Resource Include="Assets\Icons\marker\limited\museum_art.png" />
+    <Resource Include="Assets\Icons\marker\limited\ophthalmologist.png" />
+    <Resource Include="Assets\Icons\marker\limited\parking.png" />
+    <Resource Include="Assets\Icons\marker\limited\phones.png" />
+    <Resource Include="Assets\Icons\marker\limited\postal.png" />
+    <Resource Include="Assets\Icons\marker\limited\prayer.png" />
+    <Resource Include="Assets\Icons\marker\limited\publicart.png" />
+    <Resource Include="Assets\Icons\marker\limited\restaurant.png" />
+    <Resource Include="Assets\Icons\marker\limited\school.png" />
+    <Resource Include="Assets\Icons\marker\limited\shoes.png" />
+    <Resource Include="Assets\Icons\marker\limited\stadium.png" />
+    <Resource Include="Assets\Icons\marker\limited\stop.png" />
+    <Resource Include="Assets\Icons\marker\limited\supermarket.png" />
+    <Resource Include="Assets\Icons\marker\limited\swimming.png" />
+    <Resource Include="Assets\Icons\marker\limited\theater.png" />
+    <Resource Include="Assets\Icons\marker\limited\themepark.png" />
+    <Resource Include="Assets\Icons\marker\limited\toilets.png" />
+    <Resource Include="Assets\Icons\marker\limited\tools.png" />
+    <Resource Include="Assets\Icons\marker\limited\train.png" />
+    <Resource Include="Assets\Icons\marker\limited\tramway.png" />
+    <Resource Include="Assets\Icons\marker\limited\underground.png" />
+    <Resource Include="Assets\Icons\marker\limited\university.png" />
+    <Resource Include="Assets\Icons\marker\limited\veterinary.png" />
+    <Resource Include="Assets\Icons\marker\limited\zoo.png" />
+    <Resource Include="Assets\Icons\marker\no.png" />
+    <Resource Include="Assets\Icons\marker\no\airport.png" />
+    <Resource Include="Assets\Icons\marker\no\airport_terminal.png" />
+    <Resource Include="Assets\Icons\marker\no\artgallery.png" />
+    <Resource Include="Assets\Icons\marker\no\atm.png" />
+    <Resource Include="Assets\Icons\marker\no\bank.png" />
+    <Resource Include="Assets\Icons\marker\no\bar.png" />
+    <Resource Include="Assets\Icons\marker\no\barber.png" />
+    <Resource Include="Assets\Icons\marker\no\bar_coktail.png" />
+    <Resource Include="Assets\Icons\marker\no\battlefield.png" />
+    <Resource Include="Assets\Icons\marker\no\beach.png" />
+    <Resource Include="Assets\Icons\marker\no\beautifulview.png" />
+    <Resource Include="Assets\Icons\marker\no\bigcity.png" />
+    <Resource Include="Assets\Icons\marker\no\boat.png" />
+    <Resource Include="Assets\Icons\marker\no\bread.png" />
+    <Resource Include="Assets\Icons\marker\no\busstop.png" />
+    <Resource Include="Assets\Icons\marker\no\butcher.png" />
+    <Resource Include="Assets\Icons\marker\no\camping.png" />
+    <Resource Include="Assets\Icons\marker\no\carrental.png" />
+    <Resource Include="Assets\Icons\marker\no\castle.png" />
+    <Resource Include="Assets\Icons\marker\no\cave.png" />
+    <Resource Include="Assets\Icons\marker\no\cinema.png" />
+    <Resource Include="Assets\Icons\marker\no\clothers_male.png" />
+    <Resource Include="Assets\Icons\marker\no\coffee.png" />
+    <Resource Include="Assets\Icons\marker\no\computers.png" />
+    <Resource Include="Assets\Icons\marker\no\conveniencestore.png" />
+    <Resource Include="Assets\Icons\marker\no\court.png" />
+    <Resource Include="Assets\Icons\marker\no\cross.png" />
+    <Resource Include="Assets\Icons\marker\no\currencyexchange.png" />
+    <Resource Include="Assets\Icons\marker\no\cycling.png" />
+    <Resource Include="Assets\Icons\marker\no\dancinghall.png" />
+    <Resource Include="Assets\Icons\marker\no\daycare.png" />
+    <Resource Include="Assets\Icons\marker\no\dentist.png" />
+    <Resource Include="Assets\Icons\marker\no\departmentstore.png" />
+    <Resource Include="Assets\Icons\marker\no\drinkingwater.png" />
+    <Resource Include="Assets\Icons\marker\no\drugstore.png" />
+    <Resource Include="Assets\Icons\marker\no\fastfood.png" />
+    <Resource Include="Assets\Icons\marker\no\ferry.png" />
+    <Resource Include="Assets\Icons\marker\no\fillingstation.png" />
+    <Resource Include="Assets\Icons\marker\no\firstaid.png" />
+    <Resource Include="Assets\Icons\marker\no\fitness.png" />
+    <Resource Include="Assets\Icons\marker\no\flowers.png" />
+    <Resource Include="Assets\Icons\marker\no\homecenter.png" />
+    <Resource Include="Assets\Icons\marker\no\hospital.png" />
+    <Resource Include="Assets\Icons\marker\no\information.png" />
+    <Resource Include="Assets\Icons\marker\no\kiosk.png" />
+    <Resource Include="Assets\Icons\marker\no\laundromat.png" />
+    <Resource Include="Assets\Icons\marker\no\library.png" />
+    <Resource Include="Assets\Icons\marker\no\liquor.png" />
+    <Resource Include="Assets\Icons\marker\no\mall.png" />
+    <Resource Include="Assets\Icons\marker\no\medicine.png" />
+    <Resource Include="Assets\Icons\marker\no\memorial.png" />
+    <Resource Include="Assets\Icons\marker\no\motel.png" />
+    <Resource Include="Assets\Icons\marker\no\museum_archeological.png" />
+    <Resource Include="Assets\Icons\marker\no\museum_art.png" />
+    <Resource Include="Assets\Icons\marker\no\ophthalmologist.png" />
+    <Resource Include="Assets\Icons\marker\no\parking.png" />
+    <Resource Include="Assets\Icons\marker\no\phones.png" />
+    <Resource Include="Assets\Icons\marker\no\postal.png" />
+    <Resource Include="Assets\Icons\marker\no\prayer.png" />
+    <Resource Include="Assets\Icons\marker\no\publicart.png" />
+    <Resource Include="Assets\Icons\marker\no\restaurant.png" />
+    <Resource Include="Assets\Icons\marker\no\school.png" />
+    <Resource Include="Assets\Icons\marker\no\shoes.png" />
+    <Resource Include="Assets\Icons\marker\no\stadium.png" />
+    <Resource Include="Assets\Icons\marker\no\stop.png" />
+    <Resource Include="Assets\Icons\marker\no\supermarket.png" />
+    <Resource Include="Assets\Icons\marker\no\swimming.png" />
+    <Resource Include="Assets\Icons\marker\no\theater.png" />
+    <Resource Include="Assets\Icons\marker\no\themepark.png" />
+    <Resource Include="Assets\Icons\marker\no\toilets.png" />
+    <Resource Include="Assets\Icons\marker\no\tools.png" />
+    <Resource Include="Assets\Icons\marker\no\train.png" />
+    <Resource Include="Assets\Icons\marker\no\tramway.png" />
+    <Resource Include="Assets\Icons\marker\no\underground.png" />
+    <Resource Include="Assets\Icons\marker\no\university.png" />
+    <Resource Include="Assets\Icons\marker\no\veterinary.png" />
+    <Resource Include="Assets\Icons\marker\no\zoo.png" />
+    <Resource Include="Assets\Icons\marker\undefined.png" />
+    <Resource Include="Assets\Icons\marker\unknown.png" />
+    <Resource Include="Assets\Icons\marker\unknown\airport.png" />
+    <Resource Include="Assets\Icons\marker\unknown\airport_terminal.png" />
+    <Resource Include="Assets\Icons\marker\unknown\artgallery.png" />
+    <Resource Include="Assets\Icons\marker\unknown\atm.png" />
+    <Resource Include="Assets\Icons\marker\unknown\bank.png" />
+    <Resource Include="Assets\Icons\marker\unknown\bar.png" />
+    <Resource Include="Assets\Icons\marker\unknown\barber.png" />
+    <Resource Include="Assets\Icons\marker\unknown\bar_coktail.png" />
+    <Resource Include="Assets\Icons\marker\unknown\battlefield.png" />
+    <Resource Include="Assets\Icons\marker\unknown\beach.png" />
+    <Resource Include="Assets\Icons\marker\unknown\beautifulview.png" />
+    <Resource Include="Assets\Icons\marker\unknown\bigcity.png" />
+    <Resource Include="Assets\Icons\marker\unknown\boat.png" />
+    <Resource Include="Assets\Icons\marker\unknown\bread.png" />
+    <Resource Include="Assets\Icons\marker\unknown\busstop.png" />
+    <Resource Include="Assets\Icons\marker\unknown\butcher.png" />
+    <Resource Include="Assets\Icons\marker\unknown\camping.png" />
+    <Resource Include="Assets\Icons\marker\unknown\carrental.png" />
+    <Resource Include="Assets\Icons\marker\unknown\castle.png" />
+    <Resource Include="Assets\Icons\marker\unknown\cave.png" />
+    <Resource Include="Assets\Icons\marker\unknown\cinema.png" />
+    <Resource Include="Assets\Icons\marker\unknown\clothers_male.png" />
+    <Resource Include="Assets\Icons\marker\unknown\coffee.png" />
+    <Resource Include="Assets\Icons\marker\unknown\computers.png" />
+    <Resource Include="Assets\Icons\marker\unknown\conveniencestore.png" />
+    <Resource Include="Assets\Icons\marker\unknown\court.png" />
+    <Resource Include="Assets\Icons\marker\unknown\cross.png" />
+    <Resource Include="Assets\Icons\marker\unknown\currencyexchange.png" />
+    <Resource Include="Assets\Icons\marker\unknown\cycling.png" />
+    <Resource Include="Assets\Icons\marker\unknown\dancinghall.png" />
+    <Resource Include="Assets\Icons\marker\unknown\daycare.png" />
+    <Resource Include="Assets\Icons\marker\unknown\dentist.png" />
+    <Resource Include="Assets\Icons\marker\unknown\departmentstore.png" />
+    <Resource Include="Assets\Icons\marker\unknown\drinkingwater.png" />
+    <Resource Include="Assets\Icons\marker\unknown\drugstore.png" />
+    <Resource Include="Assets\Icons\marker\unknown\fastfood.png" />
+    <Resource Include="Assets\Icons\marker\unknown\ferry.png" />
+    <Resource Include="Assets\Icons\marker\unknown\fillingstation.png" />
+    <Resource Include="Assets\Icons\marker\unknown\firstaid.png" />
+    <Resource Include="Assets\Icons\marker\unknown\fitness.png" />
+    <Resource Include="Assets\Icons\marker\unknown\flowers.png" />
+    <Resource Include="Assets\Icons\marker\unknown\homecenter.png" />
+    <Resource Include="Assets\Icons\marker\unknown\hospital.png" />
+    <Resource Include="Assets\Icons\marker\unknown\information.png" />
+    <Resource Include="Assets\Icons\marker\unknown\kiosk.png" />
+    <Resource Include="Assets\Icons\marker\unknown\laundromat.png" />
+    <Resource Include="Assets\Icons\marker\unknown\library.png" />
+    <Resource Include="Assets\Icons\marker\unknown\liquor.png" />
+    <Resource Include="Assets\Icons\marker\unknown\mall.png" />
+    <Resource Include="Assets\Icons\marker\unknown\medicine.png" />
+    <Resource Include="Assets\Icons\marker\unknown\memorial.png" />
+    <Resource Include="Assets\Icons\marker\unknown\motel.png" />
+    <Resource Include="Assets\Icons\marker\unknown\museum_archeological.png" />
+    <Resource Include="Assets\Icons\marker\unknown\museum_art.png" />
+    <Resource Include="Assets\Icons\marker\unknown\ophthalmologist.png" />
+    <Resource Include="Assets\Icons\marker\unknown\parking.png" />
+    <Resource Include="Assets\Icons\marker\unknown\phones.png" />
+    <Resource Include="Assets\Icons\marker\unknown\postal.png" />
+    <Resource Include="Assets\Icons\marker\unknown\prayer.png" />
+    <Resource Include="Assets\Icons\marker\unknown\publicart.png" />
+    <Resource Include="Assets\Icons\marker\unknown\restaurant.png" />
+    <Resource Include="Assets\Icons\marker\unknown\school.png" />
+    <Resource Include="Assets\Icons\marker\unknown\shoes.png" />
+    <Resource Include="Assets\Icons\marker\unknown\stadium.png" />
+    <Resource Include="Assets\Icons\marker\unknown\stop.png" />
+    <Resource Include="Assets\Icons\marker\unknown\supermarket.png" />
+    <Resource Include="Assets\Icons\marker\unknown\swimming.png" />
+    <Resource Include="Assets\Icons\marker\unknown\theater.png" />
+    <Resource Include="Assets\Icons\marker\unknown\themepark.png" />
+    <Resource Include="Assets\Icons\marker\unknown\toilets.png" />
+    <Resource Include="Assets\Icons\marker\unknown\tools.png" />
+    <Resource Include="Assets\Icons\marker\unknown\train.png" />
+    <Resource Include="Assets\Icons\marker\unknown\tramway.png" />
+    <Resource Include="Assets\Icons\marker\unknown\underground.png" />
+    <Resource Include="Assets\Icons\marker\unknown\university.png" />
+    <Resource Include="Assets\Icons\marker\unknown\veterinary.png" />
+    <Resource Include="Assets\Icons\marker\unknown\zoo.png" />
+    <Resource Include="Assets\Icons\marker\yes.png" />
+    <Resource Include="Assets\Icons\marker\yes\airport.png" />
+    <Resource Include="Assets\Icons\marker\yes\airport_terminal.png" />
+    <Resource Include="Assets\Icons\marker\yes\artgallery.png" />
+    <Resource Include="Assets\Icons\marker\yes\atm.png" />
+    <Resource Include="Assets\Icons\marker\yes\bank.png" />
+    <Resource Include="Assets\Icons\marker\yes\bar.png" />
+    <Resource Include="Assets\Icons\marker\yes\barber.png" />
+    <Resource Include="Assets\Icons\marker\yes\bar_coktail.png" />
+    <Resource Include="Assets\Icons\marker\yes\battlefield.png" />
+    <Resource Include="Assets\Icons\marker\yes\beach.png" />
+    <Resource Include="Assets\Icons\marker\yes\beautifulview.png" />
+    <Resource Include="Assets\Icons\marker\yes\bigcity.png" />
+    <Resource Include="Assets\Icons\marker\yes\boat.png" />
+    <Resource Include="Assets\Icons\marker\yes\bread.png" />
+    <Resource Include="Assets\Icons\marker\yes\busstop.png" />
+    <Resource Include="Assets\Icons\marker\yes\butcher.png" />
+    <Resource Include="Assets\Icons\marker\yes\camping.png" />
+    <Resource Include="Assets\Icons\marker\yes\carrental.png" />
+    <Resource Include="Assets\Icons\marker\yes\castle.png" />
+    <Resource Include="Assets\Icons\marker\yes\cave.png" />
+    <Resource Include="Assets\Icons\marker\yes\cinema.png" />
+    <Resource Include="Assets\Icons\marker\yes\clothers_male.png" />
+    <Resource Include="Assets\Icons\marker\yes\coffee.png" />
+    <Resource Include="Assets\Icons\marker\yes\computers.png" />
+    <Resource Include="Assets\Icons\marker\yes\conveniencestore.png" />
+    <Resource Include="Assets\Icons\marker\yes\court.png" />
+    <Resource Include="Assets\Icons\marker\yes\cross.png" />
+    <Resource Include="Assets\Icons\marker\yes\currencyexchange.png" />
+    <Resource Include="Assets\Icons\marker\yes\cycling.png" />
+    <Resource Include="Assets\Icons\marker\yes\dancinghall.png" />
+    <Resource Include="Assets\Icons\marker\yes\daycare.png" />
+    <Resource Include="Assets\Icons\marker\yes\dentist.png" />
+    <Resource Include="Assets\Icons\marker\yes\departmentstore.png" />
+    <Resource Include="Assets\Icons\marker\yes\drinkingwater.png" />
+    <Resource Include="Assets\Icons\marker\yes\drugstore.png" />
+    <Resource Include="Assets\Icons\marker\yes\fastfood.png" />
+    <Resource Include="Assets\Icons\marker\yes\ferry.png" />
+    <Resource Include="Assets\Icons\marker\yes\fillingstation.png" />
+    <Resource Include="Assets\Icons\marker\yes\firstaid.png" />
+    <Resource Include="Assets\Icons\marker\yes\fitness.png" />
+    <Resource Include="Assets\Icons\marker\yes\flowers.png" />
+    <Resource Include="Assets\Icons\marker\yes\homecenter.png" />
+    <Resource Include="Assets\Icons\marker\yes\hospital.png" />
+    <Resource Include="Assets\Icons\marker\yes\information.png" />
+    <Resource Include="Assets\Icons\marker\yes\kiosk.png" />
+    <Resource Include="Assets\Icons\marker\yes\laundromat.png" />
+    <Resource Include="Assets\Icons\marker\yes\library.png" />
+    <Resource Include="Assets\Icons\marker\yes\liquor.png" />
+    <Resource Include="Assets\Icons\marker\yes\mall.png" />
+    <Resource Include="Assets\Icons\marker\yes\medicine.png" />
+    <Resource Include="Assets\Icons\marker\yes\memorial.png" />
+    <Resource Include="Assets\Icons\marker\yes\motel.png" />
+    <Resource Include="Assets\Icons\marker\yes\museum_archeological.png" />
+    <Resource Include="Assets\Icons\marker\yes\museum_art.png" />
+    <Resource Include="Assets\Icons\marker\yes\ophthalmologist.png" />
+    <Resource Include="Assets\Icons\marker\yes\parking.png" />
+    <Resource Include="Assets\Icons\marker\yes\phones.png" />
+    <Resource Include="Assets\Icons\marker\yes\postal.png" />
+    <Resource Include="Assets\Icons\marker\yes\prayer.png" />
+    <Resource Include="Assets\Icons\marker\yes\publicart.png" />
+    <Resource Include="Assets\Icons\marker\yes\restaurant.png" />
+    <Resource Include="Assets\Icons\marker\yes\school.png" />
+    <Resource Include="Assets\Icons\marker\yes\shoes.png" />
+    <Resource Include="Assets\Icons\marker\yes\stadium.png" />
+    <Resource Include="Assets\Icons\marker\yes\stop.png" />
+    <Resource Include="Assets\Icons\marker\yes\supermarket.png" />
+    <Resource Include="Assets\Icons\marker\yes\swimming.png" />
+    <Resource Include="Assets\Icons\marker\yes\theater.png" />
+    <Resource Include="Assets\Icons\marker\yes\themepark.png" />
+    <Resource Include="Assets\Icons\marker\yes\toilets.png" />
+    <Resource Include="Assets\Icons\marker\yes\tools.png" />
+    <Resource Include="Assets\Icons\marker\yes\train.png" />
+    <Resource Include="Assets\Icons\marker\yes\tramway.png" />
+    <Resource Include="Assets\Icons\marker\yes\underground.png" />
+    <Resource Include="Assets\Icons\marker\yes\university.png" />
+    <Resource Include="Assets\Icons\marker\yes\veterinary.png" />
+    <Resource Include="Assets\Icons\marker\yes\zoo.png" />
+    <Content Include="Assets\TileIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Assets\Background.png" />
+    <Content Include="Assets\SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>
