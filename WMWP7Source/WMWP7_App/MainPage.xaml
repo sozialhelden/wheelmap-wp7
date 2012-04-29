@@ -21,7 +21,7 @@
         <!--Panoramasteuerelement-->
         <controls:Panorama Title="Meine Anwendung">
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="PanoramaBackground.png"/>
+                <ImageBrush ImageSource="Assets/Background.png"/>
             </controls:Panorama.Background>
  
             <!--Panoramaelement eins-->
