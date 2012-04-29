@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{b055fa14-96d2-4d29-8a27-ec2345f49a5d}" Title="Wheelmap" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Sozialhelden.Wheelmap.Phone.App author" Description="Sample description" Publisher="Sozialhelden.Wheelmap.Phone.App">
+  <App xmlns="" ProductID="{b055fa14-96d2-4d29-8a27-ec2345f49a5d}" Title="Wheelmap" RuntimeType="Silverlight" Version="1.0.0.0" 
+       Genre="apps.normal" 
+       Author="subject to change" 
+       Description="This app allows you to use the wheelmap on your windows phone"
+       Publisher="Sozialhelden E.V.">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES" />
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
       <Capability Name="ID_CAP_IDENTITY_USER" />
       <Capability Name="ID_CAP_LOCATION" />
-      <Capability Name="ID_CAP_MEDIALIB" />
-      <Capability Name="ID_CAP_MICROPHONE" />
       <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_PHONEDIALER" />
       <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
       <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
