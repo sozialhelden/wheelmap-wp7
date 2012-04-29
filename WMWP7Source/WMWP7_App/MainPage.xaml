@@ -19,11 +19,7 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
  
         <!--Panoramasteuerelement-->
-        <controls:Panorama Title="Meine Anwendung">
-            <controls:Panorama.Background>
-                <ImageBrush ImageSource="Assets/Background.png"/>
-            </controls:Panorama.Background>
- 
+        <controls:Panorama Title="Meine Anwendung" Background="#FF5555FF">
             <!--Panoramaelement eins-->
             <controls:PanoramaItem Header="Erstes Element">
                 <!--Zweizeilige Liste mit Textumbruch-->
