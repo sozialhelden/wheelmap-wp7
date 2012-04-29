@@ -7,7 +7,9 @@ This Document contains informations for developers of open source project **whee
 History
 -------
 Version: 		1.0
+
 Last Changes: 	23.04.2012
+
 Author(s):		Daniel Bedarf
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

@@ -63,6 +63,8 @@ namespace Sozialhelden.Wheelmap.Lib.ViewModel
             return newcat;
         }
 
+		//TODO P3:  crate a virtual command to get categories
+		
         /// <summary>
         /// load alle categories from Server and fill into Categories Collection
         /// the collection will be updated and not cleared
