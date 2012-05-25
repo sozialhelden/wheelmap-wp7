@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="WMWP_Map.CustomMapControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:WMWP_Map"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480" 
+    xmlns:Microsoft_Phone_Controls_Maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps" 
+    xmlns:MSPCMCore="clr-namespace:Microsoft.Phone.Controls.Maps.Core;assembly=Microsoft.Phone.Controls.Maps" 
+    xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps">
+    
+    <Grid x:Name="LayoutRoot">
+        <my:Map HorizontalAlignment="Stretch" Name="map" VerticalAlignment="Stretch" LogoVisibility="Collapsed" >
+            <!-- switch to mercatore mode -->
+            <Microsoft_Phone_Controls_Maps:Map.Mode>
+                <MSPCMCore:MercatorMode></MSPCMCore:MercatorMode>
+            </Microsoft_Phone_Controls_Maps:Map.Mode>
+
+            <!-- add own tile layer -->
+            <Microsoft_Phone_Controls_Maps:Map.Children>
+                <Microsoft_Phone_Controls_Maps:MapTileLayer>
+                    <Microsoft_Phone_Controls_Maps:MapTileLayer.TileSources>
+                        <local:MapnikTileSource/>
+                    </Microsoft_Phone_Controls_Maps:MapTileLayer.TileSources>
+                </Microsoft_Phone_Controls_Maps:MapTileLayer>
+            </Microsoft_Phone_Controls_Maps:Map.Children>
+        </my:Map>
+
+        <TextBlock Text="+" IsHitTestVisible="False" FontSize="48" FontWeight="ExtraBold" Foreground="Purple" Name="Center" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock Text="©OpenStreetMap and contributors, CC BY-SA 2.0, www.creativecommons.org" IsHitTestVisible="False" FontSize="8" Foreground="Purple" Name="License" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        
+        <Button Width="160" Height="80" HorizontalAlignment="Left" Content="add pushbin" Click="Button_Click" />
+        <Image Source="/images/coffee.png" Width="37" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" ></Image>
+    </Grid>
+</UserControl>

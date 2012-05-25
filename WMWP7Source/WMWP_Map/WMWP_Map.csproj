@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2DEDAB56-B4C9-487E-84B4-8016DBAE5DC2}</ProjectGuid>
+    <ProjectGuid>{33FA8D01-7808-4AB6-BFA1-34F28AACFAF8}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sozialhelden.Wheelmap.Lib</RootNamespace>
-    <AssemblyName>Sozialhelden.Wheelmap.WP.Lib.Global</AssemblyName>
+    <RootNamespace>WMWP_Map</RootNamespace>
+    <AssemblyName>WMWP_Map</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
@@ -18,8 +18,6 @@
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <Utf8Output>true</Utf8Output>
-    <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,49 +41,45 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Devices.Sensors" />
-    <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.3\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e" />
+    <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="System.Device" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="mscorlib.extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\Config.cs" />
-    <Compile Include="DataAccess\DataManager.cs" />
-    <Compile Include="DataAccess\Exceptions\APIKeyException.cs" />
-    <Compile Include="DataAccess\Model\Category.cs" />
-    <Compile Include="Helper\OSMTileSource.cs" />
-    <Compile Include="Helper\VirtualCommand.cs" />
-    <Compile Include="PersistenceManager\PersistenceManager.cs" />
+    <Compile Include="CustomMapControl.xaml.cs">
+      <DependentUpon>CustomMapControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\IsoManager.cs" />
+    <Compile Include="tilesources\MapnikTileSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="ViewModel\CategoryViewModel.cs" />
-    <Compile Include="ViewModel\CommandViewModel.cs" />
-    <Compile Include="ViewModel\Delegates.cs" />
-    <Compile Include="ViewModel\LocaleViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\NodeViewModel.cs" />
-    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WP7_Lib_GZip\WP7_Lib_GZip.csproj">
-      <Project>{9CD80B89-56AF-44EC-838F-70C32210F098}</Project>
-      <Name>WP7_Lib_GZip</Name>
-    </ProjectReference>
+    <Page Include="CustomMapControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="packages.config" />
+    <Content Include="images\wm_logo2.png" />
+    <Content Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

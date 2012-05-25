@@ -50,7 +50,11 @@
   <ItemGroup>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls" />
+    <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Device" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -341,7 +345,7 @@
     <Resource Include="Assets\Icons\marker\yes\cave.png" />
     <Resource Include="Assets\Icons\marker\yes\cinema.png" />
     <Resource Include="Assets\Icons\marker\yes\clothers_male.png" />
-    <Resource Include="Assets\Icons\marker\yes\coffee.png" />
+    <Content Include="Assets\Icons\marker\yes\coffee.png" />
     <Resource Include="Assets\Icons\marker\yes\computers.png" />
     <Resource Include="Assets\Icons\marker\yes\conveniencestore.png" />
     <Resource Include="Assets\Icons\marker\yes\court.png" />
@@ -400,9 +404,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\Background.png" />
+    <Content Include="Assets\wm_logo2.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WMWP_Map\WMWP_Map.csproj">
+      <Project>{33FA8D01-7808-4AB6-BFA1-34F28AACFAF8}</Project>
+      <Name>WMWP_Map</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

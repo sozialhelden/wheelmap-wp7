@@ -11,27 +11,24 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace Sozialhelden.Wheelmap.Phone.App
-{
-    public partial class MainPage : PhoneApplicationPage
-    {
-        // Konstruktor
-        public MainPage()
-        {
-            InitializeComponent();
+namespace Sozialhelden.Wheelmap.Phone.App {
+   public partial class MainPage : PhoneApplicationPage {
+      // Konstruktor
+      public MainPage() {
+         InitializeComponent();
 
-            // Datenkontext des Listenfeldsteuerelements auf die Beispieldaten festlegen
-            DataContext = App.ViewModel;
-            this.Loaded += new RoutedEventHandler(MainPage_Loaded);
-        }
+         // Datenkontext des Listenfeldsteuerelements auf die Beispieldaten festlegen
+         DataContext = App.ViewModel;
+         this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+      }
 
-        // Daten für die ViewModel-Elemente laden
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                App.ViewModel.LoadData();
-            }
-        }
-    }
+      // Daten für die ViewModel-Elemente laden
+      private void MainPage_Loaded( object sender, RoutedEventArgs e ) {
+         SupportedOrientations = SupportedPageOrientation.Portrait;
+
+         if (!App.ViewModel.IsDataLoaded) {
+            App.ViewModel.LoadData();
+         }
+      }
+   }
 }

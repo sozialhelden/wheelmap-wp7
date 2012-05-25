@@ -103,6 +103,10 @@
       <Project>{2DEDAB56-B4C9-487E-84B4-8016DBAE5DC2}</Project>
       <Name>WMWP_Lib_Glob</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WMWP_Map\WMWP_Map.csproj">
+      <Project>{33FA8D01-7808-4AB6-BFA1-34F28AACFAF8}</Project>
+      <Name>WMWP_Map</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
