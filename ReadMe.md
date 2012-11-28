@@ -11,7 +11,7 @@ Projectinformations
 Project State:	**stopped**
 
 Reason(s): 
-- no developer ressources
+- no developer resources
 - newer devices available which need an other sdk 
 - Dev-Env changed from Silverlight to WinRT
 
