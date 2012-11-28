@@ -8,8 +8,12 @@ If you like to contribute feel free to contact us.
 
 Projectinformations
 -------------------------
-Project State:	**started**
-Current Development: **DataAccess**
+Project State:	**stopped**
+
+Reason(s): 
+- no developer ressources
+- newer devices available which need an other sdk 
+- Dev-Env changed from Silverlight to WinRT
 
 - - - - - - - - - -
 Development requirement
@@ -26,8 +30,11 @@ Development requirement
 Projectlinks
 -------------------
 Mailinglists bei [GoogleGroups] (http://groups.google.com/group/wheelmap-wp7/):  <wheelmap-wp7@googlegroups.com>
+
 SourceCode: <https://github.com/sozialhelden/wheelmap-wp7>
+
 todo's:	<https://github.com/sozialhelden/wheelmap-wp7/issues>
+
 
 - - - - - - - - - -
 External links
@@ -38,13 +45,16 @@ External links
 Developer
 -------------------
 *Current:*
-* Daniel Bedarf
+* Daniel
+* Gerhard
 
 *History*
  
  - - - - - - - - - -
 History
 ------------------
+* 2012 - 10	stopped
+* 2012 - 05 	maps control integrated
 * 2012 - 04	Server Contact
 * 2012 - 03 	First line of Code
 * 2012 - 02	Requirement analysis
